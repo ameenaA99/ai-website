@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الذكاء الاصطناعي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>تفاعل مع الذكاء الاصطناعي</h1>
+    <textarea id="userInput" placeholder="اكتب سؤالك هنا..."></textarea>
+    <button onclick="getResponse()">إرسال</button>
+    <div class="response" id="aiResponse"></div>
+
+    <script>
+        async function getResponse() {
+            const input = document.getElementById('userInput').value;
+            const responseDiv = document.getElementById('aiResponse');
+
+            // استبدل الرابط بـ API الخاص بك
+            const apiUrl = 'https://api.your-ai-service.com/generate'; 
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt: input }),
+            });
+            const data = await response.json();
+            responseDiv.innerText = data.answer; // تأكد من أن هذا يتطابق مع هيكل البيانات المستلمة
+        }
+    </script>
+</body>
+</html>
